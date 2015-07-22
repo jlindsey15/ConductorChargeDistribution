@@ -1,7 +1,9 @@
 # ConductorChargeDistribution
 
 Author: Jack Lindsey
+
 Created using Easy Java Simulations (http://fem.um.es/Ejs/)
+
 Inspired by / partially based on the Fu-Kwun Hwang's program found at http://www.phy.ntnu.edu.tw/ntnujava/index.php?topic=462.msg1351#msg1351)
 
 Simulates the flow of charges within a conductor.  Users can set the charge of the conductor, adjust its shape, and subject it to electric fields produced by external charges.  Users can also toggle between viewing the charges particles within the conductor and viewing the charge density along its surface.  Can be used to demonstrate various concepts in electromagnetism, including Faraday cages and the fact that charge tends to accumulate at sharp points.
