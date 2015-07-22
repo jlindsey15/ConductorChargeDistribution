@@ -212,6 +212,10 @@ public class ConductorChargeDistribution extends org.colos.ejs.library.Model {
     colors = new java.awt.Color [numColors]; // Variables.evenmorejount:9
     for (int _i0=0; _i0<numColors; _i0++) colors[_i0] = null; // Variables.evenmorejount:9
     numColors = 29; // Variables.evenmorejount:10
+    externalChargesSelected = new boolean []{true, false, false, false, false, false, false, false}; // Variables.evenmorejount:11
+    externalChargesFill = new java.awt.Color [8]; // Variables.evenmorejount:12
+    for (int _i0=0; _i0<8; _i0++) externalChargesFill[_i0] = java.awt.Color.GRAY; // Variables.evenmorejount:12
+    externalChargesBorder = new java.awt.Color []{java.awt.Color.RED, java.awt.Color.BLACK, java.awt.Color.BLACK, java.awt.Color.BLACK, java.awt.Color.BLACK, java.awt.Color.BLACK, java.awt.Color.BLACK, java.awt.Color.BLACK}; // Variables.evenmorejount:13
     _ODEi_evolution1 = new _ODE_evolution1();
   }
 
@@ -259,6 +263,9 @@ public class ConductorChargeDistribution extends org.colos.ejs.library.Model {
     externalCharges = null;  // Variables.evenmorejount:4
     lattice = null;  // Variables.evenmorejount:8
     colors = null;  // Variables.evenmorejount:9
+    externalChargesSelected = null;  // Variables.evenmorejount:11
+    externalChargesFill = null;  // Variables.evenmorejount:12
+    externalChargesBorder = null;  // Variables.evenmorejount:13
     _ODEi_evolution1=null;
     System.gc(); // Free memory from unused old arrays
   }
@@ -325,6 +332,9 @@ public class ConductorChargeDistribution extends org.colos.ejs.library.Model {
   public int lattice [][]; // Variables.evenmorejount:8
   public java.awt.Color colors []; // Variables.evenmorejount:9
   public int numColors  = 29; // Variables.evenmorejount:10
+  public boolean externalChargesSelected []; // Variables.evenmorejount:11
+  public java.awt.Color externalChargesFill []; // Variables.evenmorejount:12
+  public java.awt.Color externalChargesBorder []; // Variables.evenmorejount:13
 
  // -------------------------------------------
  // Enabled condition of pages 
@@ -353,32 +363,31 @@ public class ConductorChargeDistribution extends org.colos.ejs.library.Model {
   public void _initialization1 () { // > Initialization.ªì©l­È
     setMaxes();  // > Initialization.ªì©l­È:1
     for (int i = 0; i < numExternalCharges; i++) {  // > Initialization.ªì©l­È:2
-      externalCharges[i] = externalCharge;  // > Initialization.ªì©l­È:3
-      externalXCoords[i] = windowSize*a*1.2/2 -1;  // > Initialization.ªì©l­È:4
-      externalYCoords[i] = windowSize*b*1.2/2 -60*i;  // > Initialization.ªì©l­È:5
-    }  // > Initialization.ªì©l­È:6
-    lattice = new int[(int)(windowSize*a)][(int)(windowSize*b)];  // > Initialization.ªì©l­È:7
-    for(int i=0;i<numParticles;i++){  // > Initialization.ªì©l­È:8
-     xVelocities[i]=yVelocities[i]=0.;  // > Initialization.ªì©l­È:9
-     xCoords[i]=a*windowSize*(Math.random()-0.5) * 0.7;  // > Initialization.ªì©l­È:10
-     yCoords[i]= b*windowSize*(Math.random()-0.5) * 0.7;  // > Initialization.ªì©l­È:11
-     charges[i] = (i <= numPosParticles)? 1 : -1;  // > Initialization.ªì©l­È:12
-       if (charges[i] > 0) fillColors[i] = java.awt.Color.BLACK;  // > Initialization.ªì©l­È:13
-      else fillColors[i] = java.awt.Color.WHITE;  // > Initialization.ªì©l­È:14
-         // > Initialization.ªì©l­È:15
-    }  // > Initialization.ªì©l­È:16
-    for (int i = 0; i < windowSize * a; i++) {  // > Initialization.ªì©l­È:17
-      for (int j = 0; j < windowSize * b; j++) {  // > Initialization.ªì©l­È:18
-         try {  // > Initialization.ªì©l­È:19
-           lattice[i][j] = 0;  // > Initialization.ªì©l­È:20
-         }  // > Initialization.ªì©l­È:21
-         catch (Exception e) {}  // > Initialization.ªì©l­È:22
+      externalXCoords[i] = windowSize*a*1.2/2 -1;  // > Initialization.ªì©l­È:3
+      externalYCoords[i] = windowSize*b*1.2/2 -60*i;  // > Initialization.ªì©l­È:4
+    }  // > Initialization.ªì©l­È:5
+    lattice = new int[(int)(windowSize*a)][(int)(windowSize*b)];  // > Initialization.ªì©l­È:6
+    for(int i=0;i<numParticles;i++){  // > Initialization.ªì©l­È:7
+     xVelocities[i]=yVelocities[i]=0.;  // > Initialization.ªì©l­È:8
+     xCoords[i]=a*windowSize*(Math.random()-0.5) * 0.7;  // > Initialization.ªì©l­È:9
+     yCoords[i]= b*windowSize*(Math.random()-0.5) * 0.7;  // > Initialization.ªì©l­È:10
+     charges[i] = (i <= numPosParticles)? 1 : -1;  // > Initialization.ªì©l­È:11
+       if (charges[i] > 0) fillColors[i] = java.awt.Color.BLACK;  // > Initialization.ªì©l­È:12
+      else fillColors[i] = java.awt.Color.WHITE;  // > Initialization.ªì©l­È:13
+         // > Initialization.ªì©l­È:14
+    }  // > Initialization.ªì©l­È:15
+    for (int i = 0; i < windowSize * a; i++) {  // > Initialization.ªì©l­È:16
+      for (int j = 0; j < windowSize * b; j++) {  // > Initialization.ªì©l­È:17
+         try {  // > Initialization.ªì©l­È:18
+           lattice[i][j] = 0;  // > Initialization.ªì©l­È:19
+         }  // > Initialization.ªì©l­È:20
+         catch (Exception e) {}  // > Initialization.ªì©l­È:21
+    }  // > Initialization.ªì©l­È:22
     }  // > Initialization.ªì©l­È:23
-    }  // > Initialization.ªì©l­È:24
-    for (int i = 0; i < numColors; i++) {  // > Initialization.ªì©l­È:25
-      colors[i] = new java.awt.Color(127 + (i - (numColors-1)/2) * (254 / (numColors -1)), 127 + (i - (numColors-1)/2) * (254 / (numColors -1)), 127 + (i - (numColors-1)/2) * (254 / (numColors -1)));  // > Initialization.ªì©l­È:26
-    }  // > Initialization.ªì©l­È:27
-    //colors[4] = java.awt.Color.lightGray;  // > Initialization.ªì©l­È:28
+    for (int i = 0; i < numColors; i++) {  // > Initialization.ªì©l­È:24
+      colors[i] = new java.awt.Color(127 + (i - (numColors-1)/2) * (254 / (numColors -1)), 127 + (i - (numColors-1)/2) * (254 / (numColors -1)), 127 + (i - (numColors-1)/2) * (254 / (numColors -1)));  // > Initialization.ªì©l­È:25
+    }  // > Initialization.ªì©l­È:26
+    //colors[4] = java.awt.Color.lightGray;  // > Initialization.ªì©l­È:27
   }  // > Initialization.ªì©l­È
 
  // --- Evolution
@@ -665,33 +674,35 @@ public class ConductorChargeDistribution extends org.colos.ejs.library.Model {
 
   public void _constraints1 () { // > Fixed relations.FixRel Page
     isVisible();  // > Fixed relations.FixRel Page:1
-    chargeColor = new java.awt.Color((int)(127 - externalCharge * 1.27), (int)(127 - externalCharge * 1.27), (int)(127 - externalCharge * 1.27));  // > Fixed relations.FixRel Page:2
-    for (int i = 0; i < windowSize * a; i++) {  // > Fixed relations.FixRel Page:3
-      for (int j = 0; j < windowSize * b; j++) {  // > Fixed relations.FixRel Page:4
-        double charge = 0;  // > Fixed relations.FixRel Page:5
-        double myX = i - windowSize*a/2;  // > Fixed relations.FixRel Page:6
-        double myY = j - windowSize*b/2;  // > Fixed relations.FixRel Page:7
-        double ellipse = myX * myX / ((windowSize*a*windowSize*a/4)) + myY * myY / ((windowSize*b*windowSize*b/4));  // > Fixed relations.FixRel Page:8
-        if (ellipse - 1 < -0.2 || ellipse - 1 > 0) charge = 0;  // > Fixed relations.FixRel Page:9
-        else {  // > Fixed relations.FixRel Page:10
-        for (int k = 0; k < numParticles; k++) {  // > Fixed relations.FixRel Page:11
-            double xDif = xCoords[k] - myX;  // > Fixed relations.FixRel Page:12
-          double yDif = yCoords[k] - myY;  // > Fixed relations.FixRel Page:13
-          double distSquared = xDif * xDif + yDif * yDif;  // > Fixed relations.FixRel Page:14
-          if (distSquared < 1000) charge += (double) charges[k];  // > Fixed relations.FixRel Page:15
-          }  // > Fixed relations.FixRel Page:16
-          }  // > Fixed relations.FixRel Page:17
-          charge *= 4.0 * numColors / numParticles;  // > Fixed relations.FixRel Page:18
-        if (charge < -(numColors-1)/2) charge = -(numColors-1)/2;  // > Fixed relations.FixRel Page:19
-        if (charge > (numColors-1)/2) charge = (numColors-1)/2;  // > Fixed relations.FixRel Page:20
-        try {  // > Fixed relations.FixRel Page:21
-          lattice[i][j] = (numColors-1)/2 - (int) charge;  // > Fixed relations.FixRel Page:22
-        }  // > Fixed relations.FixRel Page:23
-        catch (Exception e) {}  // > Fixed relations.FixRel Page:24
-          // > Fixed relations.FixRel Page:25
-     }  // > Fixed relations.FixRel Page:26
-    }  // > Fixed relations.FixRel Page:27
-        // > Fixed relations.FixRel Page:28
+    for (int i = 0; i < numExternalCharges; i++) {  // > Fixed relations.FixRel Page:2
+      externalChargesFill[i] = new java.awt.Color((int)(127 - externalCharges[i] * 1.27), (int)(127 - externalCharges[i] * 1.27), (int)(127 - externalCharges[i] * 1.27));  // > Fixed relations.FixRel Page:3
+    }  // > Fixed relations.FixRel Page:4
+    for (int i = 0; i < windowSize * a; i++) {  // > Fixed relations.FixRel Page:5
+      for (int j = 0; j < windowSize * b; j++) {  // > Fixed relations.FixRel Page:6
+        double charge = 0;  // > Fixed relations.FixRel Page:7
+        double myX = i - windowSize*a/2;  // > Fixed relations.FixRel Page:8
+        double myY = j - windowSize*b/2;  // > Fixed relations.FixRel Page:9
+        double ellipse = myX * myX / ((windowSize*a*windowSize*a/4)) + myY * myY / ((windowSize*b*windowSize*b/4));  // > Fixed relations.FixRel Page:10
+        if (ellipse - 1 < -0.2 || ellipse - 1 > 0) charge = 0;  // > Fixed relations.FixRel Page:11
+        else {  // > Fixed relations.FixRel Page:12
+        for (int k = 0; k < numParticles; k++) {  // > Fixed relations.FixRel Page:13
+            double xDif = xCoords[k] - myX;  // > Fixed relations.FixRel Page:14
+          double yDif = yCoords[k] - myY;  // > Fixed relations.FixRel Page:15
+          double distSquared = xDif * xDif + yDif * yDif;  // > Fixed relations.FixRel Page:16
+          if (distSquared < 1000) charge += (double) charges[k];  // > Fixed relations.FixRel Page:17
+          }  // > Fixed relations.FixRel Page:18
+          }  // > Fixed relations.FixRel Page:19
+          charge *= 4.0 * numColors / numParticles;  // > Fixed relations.FixRel Page:20
+        if (charge < -(numColors-1)/2) charge = -(numColors-1)/2;  // > Fixed relations.FixRel Page:21
+        if (charge > (numColors-1)/2) charge = (numColors-1)/2;  // > Fixed relations.FixRel Page:22
+        try {  // > Fixed relations.FixRel Page:23
+          lattice[i][j] = (numColors-1)/2 - (int) charge;  // > Fixed relations.FixRel Page:24
+        }  // > Fixed relations.FixRel Page:25
+        catch (Exception e) {}  // > Fixed relations.FixRel Page:26
+          // > Fixed relations.FixRel Page:27
+     }  // > Fixed relations.FixRel Page:28
+    }  // > Fixed relations.FixRel Page:29
+        // > Fixed relations.FixRel Page:30
   }  // > Fixed relations.FixRel Page
 
  // --- Custom
@@ -839,8 +850,8 @@ public class ConductorChargeDistribution extends org.colos.ejs.library.Model {
   }
   public void _method_for_slider3_action () {
     for (int i = 0; i < numExternalCharges; i++) {
-      externalCharges[i] = externalCharge;
-      };
+      if (externalChargesSelected[i]) externalCharges[i] = externalCharge;
+    };
   }
   public double _method_for_DrawingPanel_minimumX () {
     return -windowSize/2*1.5* a;
@@ -894,6 +905,25 @@ public class ConductorChargeDistribution extends org.colos.ejs.library.Model {
     return (a > b) ? 4 * a : 4 * b;
   }
 
+  public void _method_for_ParticleSet2_pressaction () {
+    double x = _view.DrawingPanel.getMouseX();
+    double y = _view.DrawingPanel.getMouseY();
+    int i;
+    for (i = 0; i < numExternalCharges; i++) {
+      double extX = externalXCoords[i];
+      double extY = externalYCoords[i];
+      if ((x - extX) * (x - extX) + (y - extY) * (y - extY) < 300){
+            break;
+      }
+    }
+    for (int j = 0; j < numExternalCharges; j++) {
+      externalChargesSelected[j] = false;
+      externalChargesBorder[j] = java.awt.Color.BLACK; 
+    }
+    externalChargesSelected[i] = true;
+    externalChargesBorder[i] = java.awt.Color.RED;
+    externalCharge = externalCharges[i];
+  }
   public void _method_for_slider_dragaction () {
     _initialize();
   }

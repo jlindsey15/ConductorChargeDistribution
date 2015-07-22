@@ -86,6 +86,9 @@ class ConductorChargeDistributionView extends org.colos.ejs.library.control.EjsC
   private boolean __lattice_canBeChanged__ = true; // Variables.evenmorejount:8
   private boolean __colors_canBeChanged__ = true; // Variables.evenmorejount:9
   private boolean __numColors_canBeChanged__ = true; // Variables.evenmorejount:10
+  private boolean __externalChargesSelected_canBeChanged__ = true; // Variables.evenmorejount:11
+  private boolean __externalChargesFill_canBeChanged__ = true; // Variables.evenmorejount:12
+  private boolean __externalChargesBorder_canBeChanged__ = true; // Variables.evenmorejount:13
 
 // ---------- Class constructor -------------------
 
@@ -146,6 +149,9 @@ class ConductorChargeDistributionView extends org.colos.ejs.library.control.EjsC
     addListener("lattice"); // Variables.evenmorejount:8
     addListener("colors"); // Variables.evenmorejount:9
     addListener("numColors"); // Variables.evenmorejount:10
+    addListener("externalChargesSelected"); // Variables.evenmorejount:11
+    addListener("externalChargesFill"); // Variables.evenmorejount:12
+    addListener("externalChargesBorder"); // Variables.evenmorejount:13
   }
 
 // ---------- Implementation of View -------------------
@@ -344,6 +350,33 @@ class ConductorChargeDistributionView extends org.colos.ejs.library.control.EjsC
       _model.numColors = getInt("numColors"); // Variables.evenmorejount:10
       __numColors_canBeChanged__ = true;
     }
+    if ("externalChargesSelected".equals(_variable)) {
+      boolean[] _data = (boolean[]) getValue("externalChargesSelected").getObject();
+      int _n0 = _data.length;
+      if (_n0>_model.externalChargesSelected.length) _n0 = _model.externalChargesSelected.length;
+      for (int _i0=0; _i0<_n0; _i0++) {
+        _model.externalChargesSelected[_i0] = _data[_i0];
+      }
+      __externalChargesSelected_canBeChanged__ = true;
+    }
+    if ("externalChargesFill".equals(_variable)) {
+      java.awt.Color[] _data = (java.awt.Color[]) getValue("externalChargesFill").getObject();
+      int _n0 = _data.length;
+      if (_n0>_model.externalChargesFill.length) _n0 = _model.externalChargesFill.length;
+      for (int _i0=0; _i0<_n0; _i0++) {
+        _model.externalChargesFill[_i0] = _data[_i0];
+      }
+      __externalChargesFill_canBeChanged__ = true;
+    }
+    if ("externalChargesBorder".equals(_variable)) {
+      java.awt.Color[] _data = (java.awt.Color[]) getValue("externalChargesBorder").getObject();
+      int _n0 = _data.length;
+      if (_n0>_model.externalChargesBorder.length) _n0 = _model.externalChargesBorder.length;
+      for (int _i0=0; _i0<_n0; _i0++) {
+        _model.externalChargesBorder[_i0] = _data[_i0];
+      }
+      __externalChargesBorder_canBeChanged__ = true;
+    }
   }
 
   public void propagateValues () {
@@ -380,6 +413,9 @@ class ConductorChargeDistributionView extends org.colos.ejs.library.control.EjsC
     if(__lattice_canBeChanged__) setValue("lattice",_model.lattice); // Variables.evenmorejount:8
     if(__colors_canBeChanged__) setValue("colors",_model.colors); // Variables.evenmorejount:9
     if(__numColors_canBeChanged__) setValue("numColors",_model.numColors); // Variables.evenmorejount:10
+    if(__externalChargesSelected_canBeChanged__) setValue("externalChargesSelected",_model.externalChargesSelected); // Variables.evenmorejount:11
+    if(__externalChargesFill_canBeChanged__) setValue("externalChargesFill",_model.externalChargesFill); // Variables.evenmorejount:12
+    if(__externalChargesBorder_canBeChanged__) setValue("externalChargesBorder",_model.externalChargesBorder); // Variables.evenmorejount:13
   }
 
   @SuppressWarnings("unchecked")
@@ -415,6 +451,9 @@ class ConductorChargeDistributionView extends org.colos.ejs.library.control.EjsC
     if ("lattice".equals(_variable)) __lattice_canBeChanged__ = false; // Variables.evenmorejount:8
     if ("colors".equals(_variable)) __colors_canBeChanged__ = false; // Variables.evenmorejount:9
     if ("numColors".equals(_variable)) __numColors_canBeChanged__ = false; // Variables.evenmorejount:10
+    if ("externalChargesSelected".equals(_variable)) __externalChargesSelected_canBeChanged__ = false; // Variables.evenmorejount:11
+    if ("externalChargesFill".equals(_variable)) __externalChargesFill_canBeChanged__ = false; // Variables.evenmorejount:12
+    if ("externalChargesBorder".equals(_variable)) __externalChargesBorder_canBeChanged__ = false; // Variables.evenmorejount:13
   }
 
 // ---------- Creation of the interface  -------------------
@@ -652,11 +691,13 @@ class ConductorChargeDistributionView extends org.colos.ejs.library.control.EjsC
       .setProperty("elementnumber","numExternalCharges")
       .setProperty("x","externalXCoords")
       .setProperty("y","externalYCoords")
-      .setProperty("sizex","50")
-      .setProperty("sizey","50")
+      .setProperty("sizex","25")
+      .setProperty("sizey","25")
       .setProperty("visible","true")
       .setProperty("enabled","true")
-      .setProperty("color","chargeColor")
+      .setProperty("pressaction","_model._method_for_ParticleSet2_pressaction()" )
+      .setProperty("secondaryColor","externalChargesBorder")
+      .setProperty("color","externalChargesFill")
       .getObject();
     panel3 = (javax.swing.JPanel)
       addElement(new org.colos.ejs.library.control.swing.ControlPanel(),"panel3")
@@ -754,8 +795,8 @@ class ConductorChargeDistributionView extends org.colos.ejs.library.control.EjsC
     getElement("ParticleSet")
       .setProperty("enabled","true");
     getElement("ParticleSet2")
-      .setProperty("sizex","50")
-      .setProperty("sizey","50")
+      .setProperty("sizex","25")
+      .setProperty("sizey","25")
       .setProperty("visible","true")
       .setProperty("enabled","true");
     getElement("panel3");
@@ -796,6 +837,9 @@ class ConductorChargeDistributionView extends org.colos.ejs.library.control.EjsC
     __lattice_canBeChanged__ = true; // Variables.evenmorejount:8
     __colors_canBeChanged__ = true; // Variables.evenmorejount:9
     __numColors_canBeChanged__ = true; // Variables.evenmorejount:10
+    __externalChargesSelected_canBeChanged__ = true; // Variables.evenmorejount:11
+    __externalChargesFill_canBeChanged__ = true; // Variables.evenmorejount:12
+    __externalChargesBorder_canBeChanged__ = true; // Variables.evenmorejount:13
     super.reset();
   }
 
